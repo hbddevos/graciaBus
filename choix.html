@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choix du Voyage et Sièges</title>
+    <link rel="stylesheet" href="choix-voyage.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Réservez votre voyage</h2>
+
+        <!-- Sélection des modalités de voyage -->
+        <div class="form-section">
+            <label for="departure">Ville de départ :</label>
+            <select id="departure">
+                <option value="">Sélectionner...</option>
+                <option value="Lomé">Lomé</option>
+                <option value="Kara">Kara</option>
+                <option value="Atakpamé">Atakpamé</option>
+            </select>
+
+            <label for="arrival">Ville d'arrivée :</label>
+            <select id="arrival">
+                <option value="">Sélectionner...</option>
+                <option value="Lomé">Lomé</option>
+                <option value="Kara">Kara</option>
+                <option value="Atakpamé">Atakpamé</option>
+            </select>
+
+            <label for="date">Date du voyage :</label>
+            <input type="date" id="date">
+
+            <label for="time">Heure du voyage :</label>
+            <select id="time">
+                <option value="">Sélectionner...</option>
+                <option value="05:00">05:00</option>
+                <option value="08:00">08:00</option>
+                <option value="13:00">13:00</option>
+                <option value="18:00">18:00</option>
+            </select>
+
+            <label for="adults">Adultes :</label>
+            <input type="number" id="adults" min="1" max="10" value="1">
+
+            <label for="children">Enfants :</label>
+            <input type="number" id="children" min="0" max="10" value="0">
+
+            <p id="tarif">Tarif : --</p>
+        </div>
+
+        <h3>Choisissez vos sièges</h3>
+        <div class="seats-container"></div>
+        <p id="selected-seats">Sièges sélectionnés : Aucun</p>
+
+        <button id="confirm-btn">Confirmer et Payer</button>
+    </div>
+
+    
+</body>
+</html>
+
+
+
+<style>
+/* Global */
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: linear-gradient(135deg, #ccbfd4, #c2bbce);
+    color: white;
+    padding: 20px;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(185, 80, 141, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Formulaire */
+.form-section label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+select, input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Grille des sièges */
+.seats-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Style des sièges */
+.seat {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+.seat:hover {
+    transform: scale(1.1);
+    background-color: #6a3b8b;
+    color: white;
+}
+
+/* Siège sélectionné */
+.selected {
+    background-color: rgb(255, 0, 191) ;
+    color: black ;
+}
+
+/* Siège réservé après paiement */
+.reserved {
+    background-color: red ;
+    color: white ;
+    cursor: not-allowed;
+}
+
+/* Bouton confirmation */
+#confirm-btn {
+    background: #c94cb8;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#confirm-btn:hover {
+    background: #d44bb2;
+}
+</style>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+    const seatsContainer = document.querySelector(".seats-container");
+    const selectedSeatsDisplay = document.getElementById("selected-seats");
+    const confirmButton = document.getElementById("confirm-btn");
+    const departure = document.getElementById("departure");
+    const arrival = document.getElementById("arrival");
+    const time = document.getElementById("time");
+    const adults = document.getElementById("adults");
+    const children = document.getElementById("children");
+    const tarifDisplay = document.getElementById("tarif");
+
+    let selectedSeats = [];
+    let reservedSeats = [10, 25]; // Exemple de sièges déjà réservés
+
+    // Tarifs par itinéraire
+    const tarifs = {
+        "Lomé-Kara": 10000,
+        "Lomé-Atakpamé": 5000,
+        "Kara-Atakpamé": 7000
+    };
+
+    // Mise à jour du tarif
+    function updateTarif() {
+        let route = `${departure.value}-${arrival.value}`;
+        let tarif = tarifs[route] || 0;
+        let total = tarif * (parseInt(adults.value) + parseInt(children.value));
+        tarifDisplay.textContent = `Tarif : ${total} FCFA`;
+    }
+
+    departure.addEventListener("change", updateTarif);
+    arrival.addEventListener("change", updateTarif);
+    adults.addEventListener("change", updateTarif);
+    children.addEventListener("change", updateTarif);
+
+    // Génération des sièges
+    for (let i = 1; i <= 60; i++) {
+        const seat = document.createElement("button");
+        seat.textContent = i;
+        seat.classList.add("seat");
+
+        if (reservedSeats.includes(i)) {
+            seat.classList.add("reserved");
+            seat.disabled = true;
+        }
+
+        seat.addEventListener("click", function () {
+            let maxSeats = parseInt(adults.value) + parseInt(children.value);
+            if (selectedSeats.length >= maxSeats && !seat.classList.contains("selected")) {
+                alert("Vous avez atteint le nombre maximum de sièges sélectionnés.");
+                return;
+            }
+
+            if (seat.classList.contains("selected")) {
+                seat.classList.remove("selected");
+                selectedSeats = selectedSeats.filter(s => s !== i);
+            } else {
+                seat.classList.add("selected");
+                selectedSeats.push(i);
+            }
+
+            selectedSeatsDisplay.textContent = `Sièges sélectionnés : ${selectedSeats.join(", ") || "Aucun"}`;
+        });
+
+        seatsContainer.appendChild(seat);
+    }
+
+    // Confirmation et paiement
+    confirmButton.addEventListener("click", function () {
+        if (selectedSeats.length === 0 || time.value === "") {
+            alert("Veuillez sélectionner au moins un siège et une heure de voyage.");
+            return;
+        }
+
+        alert(`Paiement réussi pour le voyage à ${time.value} !`);
+        selectedSeats.forEach(seatNum => {
+            document.querySelector(`.seat:nth-child(${seatNum})`).classList.add("reserved");
+        });
+
+        selectedSeats = [];
+        selectedSeatsDisplay.textContent = "Sièges sélectionnés : Aucun";
+    });
+});
+</script>
+
+

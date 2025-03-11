@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deo-Gracias Mobile - Réinitialiser le mot de passe</title>
+    
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">Réinitialiser votre mot de passe</h1>
+            <p class="subtitle">Entrez votre email pour recevoir un lien de réinitialisation</p>
+        </header>
+
+        <!-- Formulaire de réinitialisation -->
+        <div class="form-container">
+            <form action="#" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Votre email" class="input-field" required>
+
+                <button type="submit" class="cta-button"><a href="choix.html">Envoyer le lien de réinitialisation</a></button>
+            </form>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-text">À la quête de l'idéal pour vous. Merci pour votre fidélité.</p>
+        </footer>
+    </div>
+
+    
+</body>
+</html>
+<style>
+    /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #dbd2e0, #c6c2ce);
+    color: #fff;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    background-color: #fff;
+    color: #4a2c84;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 2rem;
+    color: #4a2c84;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #7a7a7a;
+    margin-top: 10px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field {
+    margin: 15px 0;
+    padding: 15px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    width: 100%;
+    transition: border 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #4a2c84;
+}
+
+.cta-button {
+    background-color: #4a2c84;
+    color: #f3ecec;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #6a3b8b;
+    transform: scale(1.05);
+}
+.cta-button a{
+    color: #fff;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #7a7a7a;
+    margin-top: 10px;
+}
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+const resetPasswordForm = document.querySelector("form[action='#']");
+if (resetPasswordForm) {
+    resetPasswordForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        let email = document.getElementById("email").value;
+
+        if (email === "") {
+            alert("Veuillez entrer votre email.");
+            return;
+        }
+
+        alert("Un lien de réinitialisation a été envoyé à votre adresse email.");
+        // Logique d'envoi du lien de réinitialisation par email à implémenter.
+    });
+}
+});
+</script>

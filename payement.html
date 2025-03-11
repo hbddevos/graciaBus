@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modalités de Paiement</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Confirmer et Payer</h1>
+            <p class="subtitle">Vérifiez les détails de votre voyage et choisissez votre méthode de paiement</p>
+        </div>
+
+        <form action="#" method="post" id="paiement-form">
+            <div class="details-voyage">
+                <h2>Voyage</h2>
+                <div class="details-item">
+                    <label>Ville de départ :</label>
+                    <span id="depart">Lomé</span>
+                </div>
+                <div class="details-item">
+                    <label>Ville d'arrivée :</label>
+                    <span id="arrivee">Atakpamé</span>
+                </div>
+                <div class="details-item">
+                    <label>Date de départ :</label>
+                    <span id="date-depart">15 Mars 2025</span>
+                </div>
+                <div class="details-item">
+                    <label>Nombre de passagers :</label>
+                    <span id="nombre-passagers">2 adultes, 1 enfant</span>
+                </div>
+                <div class="details-item">
+                    <label>Prix total :</label>
+                    <span id="prix-total">2000 FCFA</span>
+                </div>
+            </div>
+
+            <div class="payment-methods">
+                <h2>Méthode de paiement</h2>
+                <div class="method">
+                    <input type="radio" id="visa" name="payment-method" value="Visa">
+                    <label for="visa">
+                        <img src="./images(2).jpg" alt="Visa" class="payment-logo"> Visa
+                    </label>
+                    <div class="payment-details">
+                        <label for="password-visa">Mot de passe :</label>
+                        <input type="password" id="password-visa" name="password-visa" required>
+                    </div>
+                    <div class="payment-confirmation">
+                        <span id="confirm-visa">Montant à transférer: 2000 FCFA</span>
+                    </div>
+                </div>
+
+                <div class="method">
+                    <input type="radio" id="carte-bancaire" name="payment-method" value="Carte bancaire">
+                    <label for="carte-bancaire">
+                        <img src="./Z.jpg" alt="Carte bancaire" class="payment-logo"> Carte bancaire
+                    </label>
+                    <div class="payment-details">
+                        <label for="password-cb">Mot de passe :</label>
+                        <input type="password" id="password-cb" name="password-cb" required>
+                    </div>
+                    <div class="payment-confirmation">
+                        <span id="confirm-cb">Montant à transférer: 2000 FCFA</span>
+                    </div>
+                </div>
+
+                <div class="method">
+                    <input type="radio" id="flooz" name="payment-method" value="Flooz">
+                    <label for="flooz">
+                        <img src="./images.png" alt="Flooz" class="payment-logo"> Flooz
+                    </label>
+                    <div class="payment-details">
+                        <label for="password-flooz">Mot de passe :</label>
+                        <input type="password" id="password-flooz" name="password-flooz" required>
+                    </div>
+                    <div class="payment-confirmation">
+                        <span id="confirm-flooz">Montant à transférer: 2000 FCFA</span>
+                    </div>
+                </div>
+
+                <div class="method">
+                    <input type="radio" id="yas" name="payment-method" value="Yas">
+                    <label for="yas">
+                        <img src="./2Q==.jpg" alt="Yas" class="payment-logo"> Yas
+                    </label>
+                    <div class="payment-details">
+                        <label for="password-yas">Mot de passe :</label>
+                        <input type="password" id="password-yas" name="password-yas" required>
+                    </div>
+                    <div class="payment-confirmation">
+                        <span id="confirm-yas">Montant à transférer: 2000 FCFA</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="confirmation">
+                <button type="submit" class="cta-button">Confirmer le paiement</button>
+            </div>
+        </form>
+    </div>
+
+    
+</body>
+</html>
+
+<style>
+    /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ada0b6, #c7c5cc);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    padding: 40px;
+    background-color: #fff;
+    color: #4a2c84;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.main-title {
+    font-size: 2rem;
+    color: #4a2c84;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #7a7a7a;
+    margin-top: 10px;
+}
+
+.details-voyage {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.details-voyage h2 {
+    color: #4a2c84;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.details-item {
+    margin-bottom: 10px;
+}
+
+.details-item label {
+    font-weight: bold;
+}
+
+.details-item span {
+    color: #333;
+    margin-left: 10px;
+}
+
+.payment-methods {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-methods h2 {
+    color: #4a2c84;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.method {
+    margin-bottom: 20px;
+}
+
+.method input[type="radio"] {
+    margin-right: 10px;
+}
+
+.payment-logo {
+    width: 30px;
+    margin-right: 10px;
+}
+
+.payment-details {
+    margin-top: 10px;
+}
+
+.payment-details label {
+    font-weight: bold;
+}
+
+.payment-confirmation {
+    margin-top: 5px;
+    font-size: 1rem;
+}
+
+.cta-button {
+    background-color: #4a2c84;
+    color: #fff;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+.cta-button:hover {
+    background-color: #6a3b8b;
+    transform: scale(1.05);
+}
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("paiement-form");
+    const prixTotalField = document.getElementById("prix-total");
+    const departField = document.getElementById("depart");
+    const arriveeField = document.getElementById("arrivee");
+    const dateDepartField = document.getElementById("date-depart");
+    const nombrePassagersField = document.getElementById("nombre-passagers");
+
+    // Simulate dynamic values (you can replace with actual data)
+    const voyageDetails = {
+        depart: "Lomé",
+        arrivee: "Atakpamé",
+        dateDepart: "15 Mars 2025",
+        nombrePassagers: "2 adultes, 1 enfant",
+        prixTotal: "2000 FCFA",
+    };
+
+    // Populate details
+    departField.textContent = voyageDetails.depart;
+    arriveeField.textContent = voyageDetails.arrivee;
+    dateDepartField.textContent = voyageDetails.dateDepart;
+    nombrePassagersField.textContent = voyageDetails.nombrePassagers;
+    prixTotalField.textContent = voyageDetails.prixTotal;
+
+    // Handle form submission (payment confirmation)
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked');
+        if (!selectedPaymentMethod) {
+            alert("Veuillez sélectionner une méthode de paiement.");
+            return;
+        }
+
+        const passwordField = document.querySelector(`#password-${selectedPaymentMethod.value.toLowerCase()}`);
+        const password = passwordField.value;
+
+        if (!password) {
+            alert("Veuillez entrer votre mot de passe.");
+            return;
+        }
+
+        const paymentMethod = selectedPaymentMethod.value;
+        alert(`Paiement confirmé avec la méthode: ${paymentMethod}. Montant à transférer: ${prixTotalField.textContent}`);
+    });
+});
+</script>

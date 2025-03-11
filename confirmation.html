@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de Réservation</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="confirmation-header">
+            <h1>Confirmation de votre Réservation</h1>
+            <p class="subtitle">Merci pour votre réservation. Voici les détails de votre voyage</p>
+        </div>
+
+        <div class="confirmation-details">
+            <div class="details-item">
+                <label>Nom du voyageur :</label>
+                <span id="voyageur-nom">Marie Gracia</span>
+            </div>
+            <div class="details-item">
+                <label>Ville de départ :</label>
+                <span id="depart">Lomé</span>
+            </div>
+            <div class="details-item">
+                <label>Ville d'arrivée :</label>
+                <span id="arrivee">Atakpamé</span>
+            </div>
+            <div class="details-item">
+                <label>Date de départ :</label>
+                <span id="date-depart">15 Mars 2025</span>
+            </div>
+            <div class="details-item">
+                <label>Nombre de passagers :</label>
+                <span id="nombre-passagers">2 adultes, 1 enfant</span>
+            </div>
+            <div class="details-item">
+                <label>Montant payé :</label>
+                <span id="montant-paye">2000 FCFA</span>
+            </div>
+        </div>
+
+        <div class="qr-code">
+            <h2>Votre QR Code</h2>
+            <p>Scannez ce code à l'entrée du bus pour valider votre billet. Ce code devient invalide après utilisation.</p>
+            <div id="qr-code-container">
+                <img id="qr-code" src="" alt="QR Code">
+                <div class="qr-overlay" id="qr-overlay"></div>
+            </div>
+        </div>
+
+        <div class="reminder">
+            <p><strong>Rappel :</strong> Vous recevrez un rappel 5 heures et 3 heures avant le départ. Assurez-vous d'arriver à l'heure.</p>
+        </div>
+
+        <div class="cta">
+            <button class="cta-button" onclick="returnToHome()"><a href="acceuil.html">Retour à l'accueil</a></button>
+        </div>
+    </div>
+
+    
+</body>
+</html>
+
+<style>
+    /* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #c1aacf, #aea5c0);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 700px;
+    padding: 40px;
+    background-color: #fff;
+    color: #4a2c84;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.confirmation-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.confirmation-header h1 {
+    font-size: 2rem;
+    color: #4a2c84;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #7a7a7a;
+    margin-top: 10px;
+}
+
+.confirmation-details {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.details-item {
+    margin-bottom: 10px;
+}
+
+.details-item label {
+    font-weight: bold;
+}
+
+.details-item span {
+    color: #333;
+    margin-left: 10px;
+}
+
+.qr-code {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.qr-code h2 {
+    font-size: 1.2rem;
+    color: #4a2c84;
+    margin-bottom: 10px;
+}
+
+#qr-code-container {
+    position: relative;
+}
+
+#qr-code {
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.qr-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: none;
+    border-radius: 10px;
+}
+
+.qr-overlay.active {
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.reminder {
+    font-size: 1rem;
+    color: #7a7a7a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: #4a2c84;
+    color: #fff;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+.cta-button:hover {
+    background-color: #6a3b8b;
+    transform: scale(1.05);
+}
+ .cta-button a{
+   color: #fff;
+ }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Simulate dynamic details for the booking confirmation
+    const voyageDetails = {
+        voyageurNom: "marie gracia",
+        depart: "Lomé",
+        arrivee: "Atakpamé",
+        dateDepart: "15 Mars 2025",
+        nombrePassagers: "2 adultes, 1 enfant",
+        montantPaye: "3000 FCFA",
+        qrCodeData: generateUniqueQRCode() // Generate a unique QR Code for each user
+    };
+
+    // Populate the confirmation details
+    document.getElementById("voyageur-nom").textContent = voyageDetails.voyageurNom;
+    document.getElementById("depart").textContent = voyageDetails.depart;
+    document.getElementById("arrivee").textContent = voyageDetails.arrivee;
+    document.getElementById("date-depart").textContent = voyageDetails.dateDepart;
+    document.getElementById("nombre-passagers").textContent = voyageDetails.nombrePassagers;
+    document.getElementById("montant-paye").textContent = voyageDetails.montantPaye;
+
+    // Display the generated QR Code
+    generateQRCode(voyageDetails.qrCodeData);
+});
+
+function generateUniqueQRCode() {
+    // Generate a unique code based on the user details
+    const uniqueCode = Math.random().toString(36).substring(2, 15) + Date.now();
+    return uniqueCode;
+}
+
+function generateQRCode(code) {
+    const qrCodeContainer = document.getElementById('qr-code');
+    const qrCodeImage = `https://api.qrserver.com/v1/create-qr-code/?data=${code}&size=200x200`;
+    qrCodeContainer.src = qrCodeImage;
+
+    // Add an overlay effect to show that the QR code is valid for one scan only
+    const qrOverlay = document.getElementById('qr-overlay');
+    qrOverlay.classList.add('active');
+
+    // Simulate QR code invalidation after scanning
+    setTimeout(function () {
+        qrOverlay.classList.remove('active');
+        alert("Le QR code est désormais invalide.");
+    }, 3000); // Valid for 3 seconds (simulate QR scan)
+}
+
+function returnToHome() {
+    window.location.href = "acceuil.html"; // Redirect to home page or main screen
+}
+</script>
